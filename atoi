@@ -1,0 +1,60 @@
+public class Solution {
+	public int atoi(String s){
+		Long temp = (long) 0;
+		Long val=(long) 0;
+		int result=0;
+		int zf=-1;
+		if(s.length()<1) {return result;}
+		int i=0;
+		int INT_MAX=2147483647;
+		int INT_MIN=-2147483648;
+		
+		while(s.charAt(i)==' '){i++;}
+		
+		if(s.charAt(i)=='+'||s.charAt(i)=='-'){
+			zf=i;
+			i++;
+		}
+
+		int size=s.length();
+		
+		
+		while(i<size){
+			
+			if(47<s.charAt(i)&&s.charAt(i)<58)
+			{
+				
+				val=(temp*10+s.charAt(i)-48);
+				
+			
+				
+				if(val>INT_MAX){
+					break;
+				}else{
+					temp=val;
+				}
+				i++;	
+			}
+			else{
+				break;
+			}
+			
+		}
+		
+	
+		
+		if((zf==-1&&val>INT_MAX)||(zf!=-1&&val>INT_MAX&&zf!=-1&&s.charAt(zf)=='+')){
+			return INT_MAX;
+		}
+		else if(zf!=-1&&s.charAt(zf)=='-'&&val>INT_MAX){
+			return INT_MIN;
+		}else if(zf!=-1&&s.charAt(zf)=='-'){
+			return 0-temp.intValue();
+		}
+		else
+		{
+			return temp.intValue();
+		}
+				
+	}
+}
