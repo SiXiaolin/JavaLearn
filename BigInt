@@ -1,0 +1,104 @@
+package Headfirst;
+
+
+import java.lang.*;
+
+
+
+/**
+ * @author jsczxy2
+ * 
+ */
+public class BigInt {
+	
+	public static void main(String[] args) {
+		BigInt a = new BigInt("367892732043217489143432876442367892732043217489143432876442367892732043217489143432876442367892732043217489143432876442");
+		BigInt b = new BigInt("3678927329999999999999994328736789273299999999999999943287367892732043217489143432876442367892732043217489143432876442");
+		System.out.println(a.toString());
+		System.out.println(b.toString());
+		System.out.println(a.add(b));
+	}
+
+	private int[] arrayint = new int[100];
+
+	public BigInt(String num) {
+		//分解数字到int数组中
+		splitNumToArray(num);
+	}
+
+	public void splitNumToArray(String num) {
+		int j = 0;
+		StringBuffer sb = new StringBuffer();
+		//数字全部翻转后分组截取后再翻转回来加入int数组,这里控制数组中每一个int元素恒定为8位不超过int最大长度
+		num = new StringBuffer(num).reverse().toString();
+		for (int i = 0; i <num.length(); i++) {
+			if (i % 8 == 0) {
+				if (sb != null && !sb.toString().equals("")){
+					arrayint[j] = Integer.valueOf(sb.reverse().toString());
+					j++;
+					sb = new StringBuffer();
+				}
+			}
+				sb.append(num.charAt(i));
+			
+		}
+		if (sb != null) {
+			arrayint[j] = Integer.valueOf(sb.reverse().toString());
+		}
+	}
+
+	//数组从后开始打印数字,不满8位补齐8位数字用0进行左填充
+	public String printArray(int[] array) {
+		StringBuffer sb = new StringBuffer();
+		boolean isNotFirstInt = false;
+		for (int i = array.length-1; i >=0 ; i--) {
+			if (array[i] != 0) {
+				System.out.println(i+":"+array[i]);
+				if(isNotFirstInt && String.valueOf(array[i]).length()<8){
+					sb.append(StringUtils.leftPad(String.valueOf(array[i]), 8,"0"));
+				}else{
+					sb.append(array[i]);
+					if(!isNotFirstInt)
+						isNotFirstInt = true;
+				}
+				
+			}
+		}
+		return sb.toString();
+	}
+
+	//BigInt数字进行加法运算
+	public String add(BigInt bigInt) {
+		int[] a = this.arrayint;
+		int[] b = bigInt.arrayint;
+		int[] result = new int[100];
+		//根据各种情况进行结果赋值
+		for(int i=0;i<a.length;i++){
+			if(a[i]==0&&b[i]!=0){
+				result[i]=b[i];
+			}else if(a[i]!=0&&b[i]==0){
+				result[i]=a[i];
+			}else if(a[i]!=0&&b[i]!=0){
+				result[i]=a[i]+b[i];
+			}else{
+				result[i]=0;
+			}
+		}
+		//处理结果数组中超过8位的int元素的进位,该int元素截掉1位后再把其后一个元素值加一
+		for(int i=0;i<result.length;i++){
+			if(String.valueOf(result[i]).length()>8){
+				result[i] = Integer.valueOf(String.valueOf(result[i]).substring(1));
+				result[i+1] = result[i+1] + 1;
+			}
+		}
+		return printArray(result);
+	}
+
+	//打印BigInt数字
+	@Override
+	public String toString() {
+		return printArray(arrayint);
+	}
+
+}
+
