@@ -6,6 +6,7 @@ LeetCode 总结
 
 
 tips
+1. 数字和字符串的操作
 涉及到数字的，一定要考虑0，负数，溢出的情况
 涉及到字符串的，考虑的情况.
 字符转成数字的，考虑字符在不在数字的范围内
@@ -13,14 +14,15 @@ tips
 考虑边界值
 
 
-continue 和 break 的区别
+2.continue 和 break 的区别
 在一个for循环中，如果是break的话，不会继续判断for里面的条件，既不再回到for循环.
 continue的话，只是跳过后面的执行语句，转回for循环继续判断和执行.
 
-java中的访问控制权限	
+3.java中的访问控制权限	
 类的访问范围
 	A、public修饰类，表示该类在所有包中可见
 	B、(default)修饰类，表示该类仅在同一个包中可见
+	C. private 仅仅能修饰内部类
 	不能用protected和private修饰类
 
 成员变量及成员方法的访问范围
@@ -30,6 +32,10 @@ java中的访问控制权限
 	C、(default)表示默认，不仅本类访问，而且是同包可见。
 	D、private	仅在同一类中可见
 	
-i++,++i的区别
+4.i++,++i的区别
 i++， 表示语句执行结束后 i加1
 ++i, 表示i先加1，之后再执行语句
+
+5 String 和 String Buffer的比较
+String是primitive数据类型，是个Final类，不可变，重新赋值的时候实际上是新建了一个类
+String Buffer是可变的.用stringbuffer 处理字符串拼接等操作实际上效率更高.
