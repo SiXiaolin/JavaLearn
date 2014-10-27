@@ -22,3 +22,43 @@ public class Solution {
 	}
 
 }
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+package Palindrome;
+
+public class Solution {
+    public boolean isPalindrome(String s) {
+    	if(s.equals("")||s.equals(" ")||s.equals(null)) {
+    		return true;
+    		}
+    	
+    	StringBuffer sb= new StringBuffer();
+    	for(int i=0;i<s.length();i++){
+    		if(s.charAt(i)<=90 && s.charAt(i)>=65||s.charAt(i)<=122 && s.charAt(i)>=97||s.charAt(i)<=57 && s.charAt(i)>=48){
+    			sb.append(s.charAt(i));
+    		}
+    	}
+    	System.out.println(sb.toString());
+    	System.out.println(sb.reverse().toString());
+    	if(sb.toString().equals("")||sb.toString().equals(" ")||sb.toString().equals(null)) {
+    		return true;
+    	}else if(sb.toString().equalsIgnoreCase(sb.reverse().toString())){
+    		return true;
+    	}
+    	else {
+    		return false;
+    		}  
+    }
+    public static void main(String args[]){
+    	Solution s = new Solution();
+    	System.out.println(s.isPalindrome("1a2"));
+    }
+}
+
+注意： 边界值..> 以及等号.
+       注意处理过后的值
+       == 和 equal（）的区别
+       注意大小写
+       
