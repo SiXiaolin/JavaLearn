@@ -1,0 +1,38 @@
+package ZigZag;
+
+public class ZigZag {
+	public String zigzag(String s,int nrows){
+		
+		if(s==null){return null;}
+		if(nrows<=1){return s;}
+		
+		String result= new String();
+		int l=0;
+		StringBuffer[] sb= new StringBuffer[nrows];
+		for(int i=0;i<nrows;i++){
+			sb[i]= new StringBuffer();
+		}
+		
+		
+		while(l<s.length()){
+			
+		for(int i=0;i<nrows;i++){
+			
+			sb[i].append(s.charAt(l++));
+		}
+		
+		for(int i=nrows-2;i>0;i--){
+			if(l<s.length()){
+			sb[i].append(s.charAt(l++));
+			}
+			else break;
+		}
+		}
+		
+		for(int i=0;i<nrows;i++){
+			result=result+sb[i].toString();
+		}
+		return result;
+	}
+
+}
