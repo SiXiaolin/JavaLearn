@@ -1,7 +1,7 @@
 package ZigZag;
 
 public class ZigZag {
-	public String zigzag(String s,int nrows){
+		public String zigzag(String s,int nrows){
 		
 		if(s==null){return null;}
 		if(nrows<=1){return s;}
@@ -17,8 +17,9 @@ public class ZigZag {
 		while(l<s.length()){
 			
 		for(int i=0;i<nrows;i++){
-			
+			if(l<s.length()){
 			sb[i].append(s.charAt(l++));
+			}
 		}
 		
 		for(int i=nrows-2;i>0;i--){
