@@ -1,0 +1,26 @@
+public class BinarySearch {
+	public int binarySearch(int[] a, int goal){
+		
+		int left=0;
+		int right=a.length-1;
+		int middle=0;
+		
+		while(left<=right){
+			middle=(left+right)/2;
+			if(a[middle]==goal){
+				return middle;
+			}
+			else if(a[middle]>goal){
+				right=middle-1;
+				left=0;
+			}else{
+				left=middle+1;
+				right=a.length-1;
+			}
+		}
+		
+		return -1;
+		
+	}
+
+}
